@@ -1,0 +1,22 @@
+.navbar {
+    display: flex;
+    padding: 1rem;
+    justify-content: space-between;
+}
+
+.navbar .list {
+    list-style-type: none;
+    display: flex;
+    margin-right: 3rem;
+}
+
+.navbar .list li .navitems {
+    padding: 0px 1rem;
+    cursor: pointer;
+    color: #000;
+}
+
+.navbar .logo {
+    height: 4rem;
+    cursor: pointer;
+}
