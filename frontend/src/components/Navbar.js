@@ -4,7 +4,7 @@ import logo from '../images/christ logo.png'
 import { Link } from 'react-router-dom';
 
 function Navbar() {
-    const isLoggedIn = true;
+    const isLoggedIn = false;
 
     return (
         <div className='navbar'>

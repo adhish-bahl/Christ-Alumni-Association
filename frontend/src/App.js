@@ -11,29 +11,31 @@ import Footer from './components/Footer';
 
 function App() {
 	return (
-		<Router>
-			<Navbar />
-			<Switch>
-				
-				<Route path="/" exact component={Home} />
+		<>
+			<Router>
+				<Navbar />
+				<Switch>
 
-				<Route path="/about" exact component={About} />
+					<Route path="/" exact component={Home} />
 
-				<Route path="/login" exact component={Login} />
+					<Route path="/about" exact component={About} />
 
-				<Route path="/search" exact component={Search} />
+					<Route path="/login" exact component={Login} />
 
-				<Route path="/addDetails" exact component={AddDetails} />
+					<Route path="/search" exact component={Search} />
 
-				<Route path="/register" exact component={Register} />
+					<Route path="/addDetails" exact component={AddDetails} />
 
-				<Route >
-					{/* <PageNotFound /> */}
-				</Route>
+					<Route path="/register" exact component={Register} />
 
-			</Switch>
-			<Footer />
-		</Router>
+					<Route >
+						{/* <PageNotFound /> */}
+					</Route>
+
+				</Switch>
+				<Footer />
+			</Router>
+		</>
 	);
 }
 
