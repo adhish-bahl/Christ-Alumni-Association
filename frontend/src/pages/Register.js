@@ -95,7 +95,7 @@ function Register() {
 				/>
 
 				<input
-					type="text"
+					type="tel"
 					name="mobile"
 					placeholder="Mobile"
 					value={formData.mobile}
