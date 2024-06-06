@@ -12,7 +12,6 @@ function Home() {
 
 			<Carousel />
 
-			<marquee className="marqueeText">Registrations for all alumni 2024 are now open! Fill the Form as soon as possible.</marquee>
 
 			<div className="upcoming">
 				<h1 className='heading'>Upcoming Programs by our Alumni</h1>

@@ -14,24 +14,16 @@ function Navbar() {
                 <li><Link to="/about" className="navitems">About</Link></li>
                 {isLoggedIn ? (
                     <>
-                        <li><Link to="/search" className="navitems">Search</Link></li>
+                        <li><Link to="/search" className="navitems">Search Alumni</Link></li>
+                        <li><Link to="/register" className="navitems">Add Alumni</Link></li>
                         <li><Link to="/logout" className="navitems">Logout</Link></li>
                     </>
                 ) : (
                     <>
                         <li><Link to="/login" className="navitems">Login</Link></li>
-
                     </>
                 )}
             </ul>
-            <div className='registerCont'>
-                {isLoggedIn ? (
-                    <></>
-                ) : (
-                    <div className="register"><Link to="/register" className="navitems">Register as Alumni</Link></div>
-                )
-            }
-            </div>
         </div>
     )
 }
