@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Login from './pages/Login';
 import Search from './pages/Search';
+import Register from './pages/Register';
 import Navbar from './components/Navbar'
 import Footer from './components/Footer';
 
@@ -21,6 +22,7 @@ function App() {
         <Route path="/about" component={About} />
         <Route path="/login" component={Login} />
         <Route path="/search" component={Search} />
+        <Route path="/register" component={Register} />
       </Switch>
       <Footer />
     </Router>
