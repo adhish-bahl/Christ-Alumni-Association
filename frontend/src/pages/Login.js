@@ -18,7 +18,7 @@ function Login() {
 			<form onSubmit={handleSubmit} className='loginForm'>
 				<h2>Welcome Back, Admin</h2>
 				<input
-					type="username"
+					type="text"
 					placeholder="Username"
 					value={userName}
 					onChange={(e) => setUserName(e.target.value)}

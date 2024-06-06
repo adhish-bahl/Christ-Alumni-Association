@@ -5,6 +5,7 @@ import About from './pages/About';
 import Login from './pages/Login';
 import Search from './pages/Search';
 import Register from './pages/Register';
+import AddDetails from './pages/AddDetails';
 import Navbar from './components/Navbar'
 import Footer from './components/Footer';
 
@@ -21,6 +22,8 @@ function App() {
 				<Route path="/login" exact component={Login} />
 
 				<Route path="/search" exact component={Search} />
+
+				<Route path="/addDetails" exact component={AddDetails} />
 
 				<Route path="/register" exact component={Register} />
 

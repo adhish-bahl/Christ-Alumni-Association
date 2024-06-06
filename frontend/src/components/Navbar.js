@@ -4,7 +4,7 @@ import logo from '../images/christ logo.png'
 import { Link } from 'react-router-dom';
 
 function Navbar() {
-    const isLoggedIn = false;
+    const isLoggedIn = true;
 
     return (
         <div className='navbar'>
@@ -16,6 +16,7 @@ function Navbar() {
                     <>
                         <li><Link to="/search" className="navitems">Search Alumni</Link></li>
                         <li><Link to="/register" className="navitems">Add Alumni</Link></li>
+                        <li><Link to="/addDetails" className="navitems">Add Year/Department</Link></li>
                         <li><Link to="/logout" className="navitems">Logout</Link></li>
                     </>
                 ) : (
