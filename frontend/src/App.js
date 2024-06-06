@@ -5,6 +5,7 @@ import About from './pages/About';
 import Login from './pages/Login';
 import Search from './pages/Search';
 import Navbar from './components/Navbar'
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/login" component={Login} />
         <Route path="/search" component={Search} />
       </Switch>
+      <Footer />
     </Router>
   );
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import '../style/Navbar.css'
-import logo from '../images/christ logo.jpg'
+import logo from '../images/christ logo.png'
 import { Link } from 'react-router-dom';
 
 function Navbar() {
@@ -18,9 +18,20 @@ function Navbar() {
                         <li><Link to="/logout" className="navitems">Logout</Link></li>
                     </>
                 ) : (
-                    <li><Link to="/login" className="navitems">Login</Link></li>
+                    <>
+                        <li><Link to="/login" className="navitems">Login</Link></li>
+
+                    </>
                 )}
             </ul>
+            <div className='registerCont'>
+                {isLoggedIn ? (
+                    <></>
+                ) : (
+                    <div className="register"><Link to="/register" className="navitems">Register as Alumni</Link></div>
+                )
+            }
+            </div>
         </div>
     )
 }

@@ -1,0 +1,66 @@
+.home .marqueeText {
+    font-size: 2rem;
+    margin: 1.5rem 1rem;
+}
+
+.home .upcoming {
+    background-color: rgb(150, 173, 231);
+    margin: 3rem;
+    border-radius: 24px;
+    padding: 2rem 3rem;
+}
+
+.home .upcoming .progCont {
+    display: flex;
+}
+
+.home .upcoming .heading {
+    text-align: center;
+    margin-top: 0%;
+    margin-bottom: 2rem;
+}
+
+.home .upcoming .prog {
+    background-color: rgb(255, 255, 255);
+    border-radius: 16px;
+    padding: .5rem 1rem;
+    margin: 0rem 1rem;
+    width: 25vw;
+}
+
+.home .upcoming .prog .eventHeading, .home .upcoming .prog .eventy {
+    margin-bottom: 0%;
+    margin-top: .5rem;
+}
+
+.home .upcoming .prog .eventBy {
+    margin-top: 8px;
+    margin-bottom: 15px;
+    color: rgb(111, 111, 111);
+}
+
+.home .upcoming .prog .imageCont {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.home .upcoming .prog .eventImage {
+    width: 90%;
+    margin-bottom: 15px;
+}
+
+.home .upcoming .prog .desc {
+    text-align: justify;
+    font-size: 1.1rem;
+}
+
+.home .upcoming .prog .date {
+    margin-top: 15px;
+    font-weight: 600;
+}
+
+.home .upcoming .prog .venue {
+    margin-bottom: 10px;
+    font-weight: 600;
+}
