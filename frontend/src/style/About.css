@@ -1,0 +1,55 @@
+.parallax1 {
+    background-image: url("../images/christCampus2.webp");
+    min-height: 100vh;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* filter: blur(8px); */
+}
+
+.parallax2 {
+    background-image: url("../images/christCampus1.webp");
+    min-height: 100vh;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.parallax3 {
+    background-image: url("../images/christCampus3.webp");
+    min-height: 100vh;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.parallax .cont {
+    background-color: rgba(255, 255, 255, 0.442);
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.parallax .heading {
+    text-align: center;
+    font-size: 3rem;
+    font-weight: 700;
+}
+
+.parallax .desc {
+    font-size: 1.5rem;
+    text-align: justify;
+    width: 70%;
+    font-weight: 500;
+}
+
+.justLine {
+    height: 1rem;
+    background-color: black;
+}
