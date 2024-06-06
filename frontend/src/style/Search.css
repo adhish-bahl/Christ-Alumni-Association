@@ -2,6 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     min-height: 76vh;
 }
 
@@ -19,13 +20,14 @@
     -webkit-box-shadow: 10px 10px 14px 0px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 10px 10px 14px 0px rgba(0, 0, 0, 0.75);
     box-shadow: 10px 10px 14px 0px rgba(0, 0, 0, 0.75);
+    padding-bottom: 2rem;
 }
 
 .search .searchForm .heading {
     font-size: 1.7rem;
 }
 
-.search .searchForm input{
+.search .searchForm input {
     font-size: 1rem;
     text-align: center;
     margin: .5rem .5rem;
@@ -49,4 +51,59 @@
 .search .searchForm .submitButton:hover {
     transform: scale(1.01);
 
+}
+
+.search .searchForm .resultsTable {
+    width: 80%;
+    -webkit-box-shadow: 10px 10px 14px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 10px 14px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 10px 10px 14px 0px rgba(0, 0, 0, 0.75);
+}
+
+
+.search .searchForm .resultsTable,
+.search .searchForm th,
+.search .searchForm td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    font-size: 1.1rem;
+    padding: .3rem;
+    margin: 1rem 0rem;
+    /* background-color: white; */
+}
+
+.search .searchForm td {
+    font-weight: 400;
+    padding-left: .6rem;
+}
+
+.search .searchForm .resultsTable tr:nth-child(even) {
+    background-color: #bcbcbc;
+}
+
+.search .searchForm .resultsTable tr:nth-child(odd) {
+    background-color: white;
+}
+
+.search .searchForm .resultsTable tr:hover {
+    background-color: rgb(142, 142, 142);
+    cursor: pointer;
+}
+
+.closeModal {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.ReactModal__Content {
+    margin: 15vh 20vw;
+    border-radius: 50px;
+    background-color: rgb(150, 173, 231) !important;
+}
+
+.ReactModal__Content p {
+    margin-left: 2rem;
 }
