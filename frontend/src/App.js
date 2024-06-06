@@ -9,24 +9,28 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer';
 
 function App() {
-  return (
-    // <div className="App">
-    //   <header className="App-header">
-        
-    //   </header>
-    // </div>
-    <Router>
-      <Navbar />
-      <Switch>
-        <Route path="/" exact component={Home} />
-        <Route path="/about" component={About} />
-        <Route path="/login" component={Login} />
-        <Route path="/search" component={Search} />
-        <Route path="/register" component={Register} />
-      </Switch>
-      <Footer />
-    </Router>
-  );
+	return (
+		<Router>
+			<Navbar />
+			<Switch>
+				<Route path="/" exact component={Home} />
+
+				<Route path="/about" exact component={About} />
+
+				<Route path="/login" exact component={Login} />
+
+				<Route path="/search" exact component={Search} />
+
+				<Route path="/register" exact component={Register} />
+
+				<Route >
+					{/* <PageNotFound /> */}
+				</Route>
+
+			</Switch>
+			<Footer />
+		</Router>
+	);
 }
 
 export default App;

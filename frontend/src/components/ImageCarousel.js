@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { motion, AnimatePresence } from "framer-motion";
+// import { motion, AnimatePresence } from "framer-motion";
 import '../style/ImageCarousel.css'
 import Pic1 from '../images/pic1.jpg'
 import Pic2 from '../images/pic2.jpg'
@@ -34,7 +34,7 @@ function ImageCarousel() {
             <img
                 key={currentIndex}
                 src={image[currentIndex]}
-                // src={Pic1}
+                alt={image[currentIndex]}
             /><div className="slide_direction">
                 <div className="left" onClick={handlePrevious}>
                     <svg

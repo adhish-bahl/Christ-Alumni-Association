@@ -8,6 +8,9 @@
     margin: 3rem;
     border-radius: 24px;
     padding: 2rem 3rem;
+    -webkit-box-shadow: 10px 10px 14px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 10px 14px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 10px 10px 14px 0px rgba(0, 0, 0, 0.75);
 }
 
 .home .upcoming .progCont {
@@ -26,9 +29,13 @@
     padding: .5rem 1rem;
     margin: 0rem 1rem;
     width: 25vw;
+    -webkit-box-shadow: 5px 5px 14px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 5px 5px 14px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 5px 5px 14px 0px rgba(0, 0, 0, 0.75);
 }
 
-.home .upcoming .prog .eventHeading, .home .upcoming .prog .eventy {
+.home .upcoming .prog .eventHeading,
+.home .upcoming .prog .eventy {
     margin-bottom: 0%;
     margin-top: .5rem;
 }
