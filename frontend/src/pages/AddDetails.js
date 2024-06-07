@@ -6,18 +6,52 @@ function AddDetails() {
     const [year, setYear] = useState('');
 	const [department, setDepartment] = useState('');
 
-	const handleSubmitYear = (e) => {
+	const handleSubmitYear = async (e) => {
 		e.preventDefault();
-		// Handle login logic
 
-		console.log("year")
+        if (!year) {
+            alert('Year field is empty');
+            return;
+        }
+
+		const response = await fetch('http://localhost:8000/api/add-year', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ year })
+        });
+
+        if (response.ok) {
+            alert('Year added successfully');
+            setYear('');
+        } else {
+            console.error('Failed to add year');
+        }
 	};
 
-    const handleSubmitDepartment = (e) => {
+    const handleSubmitDepartment = async (e) => {
 		e.preventDefault();
-		// Handle login logic
 
-		console.log("department")
+        if (!department) {
+            alert('Department field is empty');
+            return;
+        }
+
+		const response = await fetch('http://localhost:8000/api/add-department', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ department })
+        });
+
+        if (response.ok) {
+            alert('Department added successfully');
+            setDepartment('');
+        } else {
+            console.error('Failed to add department');
+        }
 	};
 
     return (

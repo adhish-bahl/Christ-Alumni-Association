@@ -23,7 +23,7 @@ function Register() {
 		// Fetch departments
 		const fetchDepartments = async () => {
 			try {
-				const response = await axios.get('http://localhost:5000/api/departments');
+				const response = await axios.get('http://localhost:8000/api/department');
 				setDepartments(response.data);
 			} catch (error) {
 				console.error('Error fetching departments', error);
@@ -33,15 +33,15 @@ function Register() {
 		// Fetch graduation years
 		const fetchGraduationYears = async () => {
 			try {
-				const response = await axios.get('http://localhost:5000/api/graduation-years');
+				const response = await axios.get('http://localhost:8000/api/graduation-year');
 				setGraduationYears(response.data);
 			} catch (error) {
 				console.error('Error fetching graduation years', error);
 			}
 		};
 
-		fetchDepartments();
 		fetchGraduationYears();
+		fetchDepartments();
 	}, []);
 
 	const handleChange = (e) => {
@@ -110,8 +110,8 @@ function Register() {
 				>
 					<option value="" disabled>Select Department</option>
 					{departments.map((department) => (
-						<option key={department.id} value={department.name}>
-							{department.name}
+						<option key={department.id} value={department.department}>
+							{department.department}
 						</option>
 					))}
 				</select>
@@ -124,8 +124,8 @@ function Register() {
 				>
 					<option value="" disabled>Select Graduation Year</option>
 					{graduationYears.map((year) => (
-						<option key={year} value={year}>
-							{year}
+						<option key={year.id} value={year.year}>
+							{year.year}
 						</option>
 					))}
 				</select>
