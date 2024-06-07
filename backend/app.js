@@ -115,6 +115,28 @@ app.get('/api/graduation-year', (req, res) => {
 });
 
 
+// Add Alumni
+app.post('/api/register', async (req, res) => {
+    try {
+        const { name, dob, email, mobile, department, graduation_year, specialisation, extra_curricular, co_curricular } = req.body;
+
+        // Fetch graduation year ID
+        const [graduationYearRows] = await db.promise().query('SELECT id FROM g_year WHERE year = ?', [graduation_year]);
+        const graduation_year_id = graduationYearRows[0].id;
+
+        // Fetch department ID
+        const [departmentRows] = await db.promise().query('SELECT id FROM department WHERE department = ?', [department]);
+        const department_id = departmentRows[0].id;
+
+        // Insert alumni data
+        await db.promise().query('INSERT INTO alumni (name, dob, email, mobile, department_id, graduation_year_id, specialisation, extra_curricular_activities, co_curricular_activities) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)', [name, dob, email, mobile, department_id, graduation_year_id, specialisation, extra_curricular, co_curricular]);
+
+        res.status(200).send('Alumni registered successfully');
+    } catch (error) {
+        console.error('Error registering alumni:', error);
+        res.status(500).send('Server error');
+    }
+});
 
 
 // JWT

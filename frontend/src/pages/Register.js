@@ -54,8 +54,21 @@ function Register() {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			await axios.post('http://localhost:5000/api/alumni/register', formData);
-			alert('Registration successful');
+			const response = await axios.post('http://localhost:8000/api/register', formData);
+			if (response.status === 200) {
+				alert('Registration successful');
+				setFormData({
+					name: '',
+					dob: '',
+					email: '',
+					mobile: '',
+					department: '',
+					graduation_year: '',
+					specialisation: '',
+					extra_curricular: '',
+					co_curricular: '',
+				});
+			}
 		} catch (error) {
 			console.error('Registration failed', error);
 		}
