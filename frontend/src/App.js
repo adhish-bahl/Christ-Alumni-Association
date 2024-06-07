@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Home from './pages/Home';
 import About from './pages/About';
 import Login from './pages/Login';
@@ -8,23 +8,8 @@ import Register from './pages/Register';
 import AddDetails from './pages/AddDetails';
 import Navbar from './components/Navbar'
 import Footer from './components/Footer';
-// import { useEffect, useState } from 'react';
 
 function App() {
-
-	// const [loggedIn, setLoggedIn] = useState(flase)
-
-	// useEffect(() => {
-	// 	axios.get('http://localhost:8000')
-	// 	.then( res => {
-	// 		if(res.data.valid) {
-	// 			setLoggedIn(true)
-	// 		} else {
-	// 			setLoggedIn(false)
-	// 		}
-	// 	})
-	// 	.catch(err =>  console.log(err))
-	// }, [])
 
 	return (
 		<>

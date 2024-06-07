@@ -1,16 +1,29 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import '../style/Login.css'
+import axios from 'axios';
 
 function Login() {
 
 	const [userName, setUserName] = useState('');
 	const [password, setPassword] = useState('');
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
-		// Handle login logic
 
-		console.log("click")
+		try {
+			const response = await axios.post('http://localhost:8000/api/login', { username: userName, password });
+
+			if (response.status === 200) {
+				window.location.href = '/search';
+			}
+		} catch (error) {
+			console.error('Login failed:', error);
+			if (error.response && error.response.data) {
+				alert('Login failed: ' + error.response.data);
+			} else {
+				alert('Login failed: An unexpected error occurred.');
+			}
+		}
 	};
 
 	return (
@@ -23,7 +36,7 @@ function Login() {
 					value={userName}
 					onChange={(e) => setUserName(e.target.value)}
 				/>
-				
+
 				<input
 					type="password"
 					placeholder="Password"
@@ -32,7 +45,7 @@ function Login() {
 				/>
 
 				<button type="submit" className='submitButton'>Login</button>
-				
+
 			</form>
 		</div>
 	)

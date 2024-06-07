@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const mysql = require('mysql');
+const mysql = require('mysql2');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 require('dotenv').config();
@@ -8,25 +8,9 @@ require('dotenv').config();
 const app = express();
 const port = 8000;
 
-app.use(bodyParser.json());
-app.use(cookieParser())
-app.use(cors());
-// app.use(cors({
-//     origin: ['http://localhost:3000'],
-//     methods: ["POST", 'GET'],
-//     credentials: true
-// }));
 app.use(express.json());
-
-// app.use(session({
-//     secret: 'Adhish',
-//     resave: false,
-//     saveUninitialized: false,
-//     cookie: {
-//         secure: false,
-//         maxAge: 1000*60*60*24
-//     }
-// }))
+app.use(bodyParser.json());
+app.use(cors());
 
 const db = mysql.createConnection({
     host: process.env.DB_HOST,
@@ -41,6 +25,30 @@ db.connect((err) => {
         return;
     }
     console.log('Connected to the MySQL database.');
+});
+
+// Login
+app.post('/api/login', (req, res) => {
+    const { username, password } = req.body;
+    const query = 'SELECT * FROM login WHERE username = ?';
+
+    db.query(query, [username], async (err, results) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).send('Error logging in');
+        }
+        if (results.length === 0) {
+            return res.status(400).send('User not found');
+        }
+
+        const user = results[0];
+        if (password !== user.password) {
+            return res.status(400).send('Invalid password');
+        }
+
+        res.status(200).json({ message: 'Login successful' });
+
+    });
 });
 
 // Add Year
@@ -97,9 +105,6 @@ app.get('/api/graduation-year', (req, res) => {
             res.status(500).json({ error: 'Server error' });
             return;
         }
-        // const years = results.map(row => row.year);
-        // console.log(years);
-        // res.json(years);
         res.json(results);
     });
 });
