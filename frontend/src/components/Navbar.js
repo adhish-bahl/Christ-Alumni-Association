@@ -3,10 +3,11 @@ import '../style/Navbar.css'
 import logo from '../images/christ logo.png'
 import { Link } from 'react-router-dom';
 
-function Navbar({isLoggedIn}) {
+function Navbar({isLoggedIn, onLogin}) {
 
     const handleLogout = () => {
         localStorage.removeItem('token');
+        onLogin();
     }
 
     return (
