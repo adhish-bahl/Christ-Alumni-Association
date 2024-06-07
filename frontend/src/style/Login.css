@@ -12,9 +12,11 @@
     flex-direction: column;
     background-color: rgb(150, 173, 231);
     width: 50vw;
-    height: 50vh;
+    min-height: 55vh;
+    height: fit-content;
     border-radius: 10px;
     margin: 5rem 0rem;
+    padding: 1.5rem;
     border: 1px solid black;
     -webkit-box-shadow: 10px 10px 14px 0px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 10px 10px 14px 0px rgba(0, 0, 0, 0.75);
@@ -49,4 +51,10 @@
 .login .loginForm .submitButton:hover {
     transform: scale(1.01);
 
+}
+
+.login .messageLabel {
+    color: rgb(185, 2, 2);
+    margin: 0px;
+    padding: 0px;
 }

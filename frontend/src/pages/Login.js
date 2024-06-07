@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import '../style/Login.css'
 import axios from 'axios';
 import { useHistory } from 'react-router-dom'; 
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import CryptoJS from 'crypto-js';
 
 function Login({ onLogin }) {
 
@@ -12,14 +14,15 @@ function Login({ onLogin }) {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
+		const encryptedPassword = CryptoJS.AES.encrypt(password, "alumni").toString();
+
 		try {
-			const response = await axios.post('http://localhost:8000/api/login', { username: userName, password });			
+			const response = await axios.post('http://localhost:8000/api/login', { username: userName, password: encryptedPassword });			
 			
 			if (response.status === 200) {
 				// JWT
 				localStorage.setItem('token', response.data.token);
 
-				console.log("login")
 				onLogin();
 				history.push('/search');
 			}
@@ -52,8 +55,9 @@ function Login({ onLogin }) {
 					onChange={(e) => setPassword(e.target.value)}
 				/>
 
-				<button type="submit" className='submitButton'>Login</button>
+				<button type="submit" className='submitButton' style={{marginBottom:"1rem"}}>Login</button>
 
+			<h4>Don't have an account? Click <Link to="/signup" >here</Link> to make one.</h4>
 			</form>
 		</div>
 	)

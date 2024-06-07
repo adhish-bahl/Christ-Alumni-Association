@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 require('dotenv').config();
 const axios = require('axios');
+const CryptoJS = require("crypto-js");
 
 const app = express();
 const port = 8000;
@@ -28,10 +29,28 @@ db.connect((err) => {
     console.log('Connected to the MySQL database.');
 });
 
+// Signup
+app.post('/api/signup', (req, res) => {
+    const { username, password } = req.body;
+    const query = 'INSERT INTO login(username, password) VALUES(?, ?)';
+
+    db.query(query, [username, password], (err, results) => {
+        if (err) {
+            console.error('Error inserting year:', err);
+            res.status(500).send('Error Signing up');
+            return;
+        }
+        res.status(200).send('Signed up successfully!');
+    });
+});
+
 // Login
 app.post('/api/login', (req, res) => {
-    const { username, password } = req.body;
+    let { username, password } = req.body;
+    password = CryptoJS.AES.decrypt(password, "alumni").toString(CryptoJS.enc.Utf8);
+
     const query = 'SELECT * FROM login WHERE username = ?';
+
 
     db.query(query, [username], async (err, results) => {
         if (err) {
@@ -43,7 +62,11 @@ app.post('/api/login', (req, res) => {
         }
 
         const user = results[0];
-        if (password !== user.password) {
+
+        const decryptedPassword = CryptoJS.AES.decrypt(user.password, "alumni").toString(CryptoJS.enc.Utf8);
+
+        // if (password !== user.password) {
+        if (password !== decryptedPassword) {
             return res.status(400).send('Invalid password');
         }
 

@@ -10,6 +10,7 @@ import AddDetails from './pages/AddDetails';
 import Navbar from './components/Navbar'
 import Footer from './components/Footer';
 import axios from 'axios';
+import Signup from './pages/Signup';
 
 function App() {
 
@@ -45,6 +46,10 @@ function App() {
 
 					<Route path="/login" exact >
 						{isLoggedIn ? <Redirect to="/" /> : <Login onLogin={checkLoggedIn} />}
+					</Route>
+
+					<Route path="/signup" exact >
+						{isLoggedIn ? <Redirect to="/" /> : <Signup />}
 					</Route>
 
 					<Route path="/search" exact>
