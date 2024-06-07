@@ -1,21 +1,29 @@
-import React, { useState, useContext } from 'react'
+import React, { useState } from 'react'
 import '../style/Login.css'
 import axios from 'axios';
+import { useHistory } from 'react-router-dom'; 
 
-function Login() {
+function Login({ onLogin }) {
 
 	const [userName, setUserName] = useState('');
 	const [password, setPassword] = useState('');
+    const history = useHistory(); 
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
 		try {
-			const response = await axios.post('http://localhost:8000/api/login', { username: userName, password });
-
+			const response = await axios.post('http://localhost:8000/api/login', { username: userName, password });			
+			
 			if (response.status === 200) {
-				window.location.href = '/search';
+				// JWT
+				localStorage.setItem('token', response.data.token);
+
+				console.log("login")
+				onLogin();
+				history.push('/search');
 			}
+
 		} catch (error) {
 			console.error('Login failed:', error);
 			if (error.response && error.response.data) {
