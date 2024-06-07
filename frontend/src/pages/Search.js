@@ -40,7 +40,7 @@ function Search() {
 		e.preventDefault();
 		try {
 			const response = await axios.post('http://localhost:8000/api/deleteAlumni', {alumniId: selectedAlumni.id});
-			if(response.status == 200) {
+			if(response.status === 200) {
 				alert("Deleted Successfully!");
 				closeModal();
 			}

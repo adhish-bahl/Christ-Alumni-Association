@@ -1,5 +1,4 @@
-import React, { useState } from 'react'
-// import { motion, AnimatePresence } from "framer-motion";
+import React, { useState, useEffect } from 'react'
 import '../style/ImageCarousel.css'
 import Pic1 from '../images/pic1.jpg'
 import Pic2 from '../images/pic2.jpg'
@@ -12,6 +11,17 @@ function ImageCarousel() {
     const image = [Pic1, Pic2, Pic3, Pic4, Pic5]
 
     const [currentIndex, setCurrentIndex] = useState(0);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentIndex(prevIndex =>
+                prevIndex + 1 === image.length ? 0 : prevIndex + 1
+            );
+        }, 3000);
+
+        return () => clearInterval(interval);
+        // eslint-disable-next-line
+    }, []);
 
     const handleNext = () => {
         setCurrentIndex((prevIndex) =>

@@ -53,6 +53,14 @@ function Register() {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+
+		for (const field in formData) {
+			if (!formData[field]) {
+				alert('All fields are required');
+				return;
+			}
+		}
+		
 		try {
 			const response = await axios.post('http://localhost:8000/api/register', formData);
 			if (response.status === 200) {
