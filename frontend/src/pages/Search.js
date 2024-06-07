@@ -15,7 +15,7 @@ function Search() {
 	const handleSearch = async (e) => {
 		e.preventDefault();
 
-		if (name == "" && graduationYear == "" && department == "") {
+		if (name === "" && graduationYear === "" && department === "") {
 			alert("All filters are empty")
 			return
 		}
@@ -36,11 +36,24 @@ function Search() {
 
 	};
 
+	const handleDelete = async (e) => {
+		e.preventDefault();
+		try {
+			const response = await axios.post('http://localhost:8000/api/deleteAlumni', {alumniId: selectedAlumni.id});
+			if(response.status == 200) {
+				alert("Deleted Successfully!");
+				closeModal();
+			}
+		} catch (error) {
+			console.error('Delete failed', error);
+		}
+	}
+
 
 	useEffect(() => {
 		const fetchData = async () => {
 
-			if (name == "" && graduationYear == "" && department == "") {
+			if (name === "" && graduationYear === "" && department === "") {
 				// alert("All filters empty")
 				setResults([])
 				return
@@ -146,6 +159,7 @@ function Search() {
 						<p><strong>Specialisation:</strong> {selectedAlumni.specialisation}</p>
 						<p><strong>Curricular Activities:</strong> {selectedAlumni.extra_curricular_activities}</p>
 						<p><strong>Cocurricular Activities:</strong> {selectedAlumni.co_curricular_activities}</p>
+						<button onClick={handleDelete} className='deleteButton' >Delete Alumni</button>
 						<button onClick={closeModal} className='closeModal'>X</button>
 					</div>
 				)}

@@ -160,6 +160,21 @@ app.post('/api/register', async (req, res) => {
     }
 });
 
+// Delete Alumni
+app.post('/api/deleteAlumni', (req, res) => {
+    const { alumniId } = req.body;
+    const query = 'DELETE FROM alumni WHERE id = ?';
+    
+    db.query(query, [alumniId], (err, results) => {
+        if (err) {
+            console.error('Error inserting year:', err);
+            res.status(500).send('Server error');
+            return;
+        }
+        res.status(200).send('Alumni deleted successfully');
+    });
+});
+
 
 // Search Alumni
 app.get('/api/search', (req, res) => {

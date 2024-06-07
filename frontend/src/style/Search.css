@@ -107,3 +107,15 @@
 .ReactModal__Content p {
     margin-left: 2rem;
 }
+
+.deleteButton {
+    background-color: rgb(157, 0, 0) !important;
+    color: white;
+    padding: .3rem 1rem;
+    border-radius: 10px;
+    margin-left: 3rem;
+}
+
+.deleteButton:hover {
+    transform: scale(1.1);
+}
