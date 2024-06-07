@@ -4,6 +4,7 @@ const mysql = require('mysql2');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 require('dotenv').config();
+const axios = require('axios');
 
 const app = express();
 const port = 8000;
@@ -46,7 +47,11 @@ app.post('/api/login', (req, res) => {
             return res.status(400).send('Invalid password');
         }
 
-        res.status(200).json({ message: 'Login successful' });
+        // JWT
+        const token = jwt.sign({ username: username }, process.env.JWT_SECRET, { expiresIn: '1h' });
+        res.cookie('token', token, { httpOnly: true });
+        res.status(200).json({ token: token });
+        // res.status(200).json({ message: 'Login successful' });
 
     });
 });
@@ -108,6 +113,49 @@ app.get('/api/graduation-year', (req, res) => {
         res.json(results);
     });
 });
+
+
+
+
+// JWT
+
+const jwt = require('jsonwebtoken');
+
+function authenticateToken(req, res, next) {
+    const token = req.headers['authorization'];
+    if (token == null) return res.sendStatus(401);
+
+    jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+        if (err) return res.sendStatus(403);
+        req.user = user;
+        next();
+    });
+}
+
+function verifyToken(req, res, next) {
+    const token = req.headers['authorization'];
+    if (token == null) return res.sendStatus(401);
+
+    jwt.verify(token.split(' ')[1], process.env.JWT_SECRET, (err, user) => {
+        if (err) return res.sendStatus(403);
+        req.user = user;
+        next();
+    });
+}
+
+app.get('/api/protected-route', authenticateToken, (req, res) => {
+
+});
+
+// Add this middleware to your endpoint
+app.get('/api/verify-token', verifyToken, (req, res) => {
+    // If the middleware successfully verifies the token, the user is considered logged in
+    res.sendStatus(200);
+});
+
+
+
+
 
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
