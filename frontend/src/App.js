@@ -49,6 +49,7 @@ function App() {
 
 					<Route path="/search" exact>
 						{isLoggedIn ? <Search /> : <Redirect to="/" />}
+						{/* <Search isLoggedIn={isLoggedIn} /> */}
 					</Route>
 
 					<Route path="/addDetails" exact >

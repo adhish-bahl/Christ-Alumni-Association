@@ -3,7 +3,7 @@ import '../style/Navbar.css'
 import logo from '../images/christ logo.png'
 import { Link } from 'react-router-dom';
 
-function Navbar({isLoggedIn, onLogin}) {
+function Navbar({ isLoggedIn, onLogin }) {
 
     const handleLogout = () => {
         localStorage.removeItem('token');
@@ -29,6 +29,14 @@ function Navbar({isLoggedIn, onLogin}) {
                     </>
                 )}
             </ul>
+
+            <div>
+                {isLoggedIn ? (
+                    <p className='greetings'>Hello, Admin</p>
+                ) : (
+                    <p></p>
+                )}
+            </div>
         </div>
     )
 }

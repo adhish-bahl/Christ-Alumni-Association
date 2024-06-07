@@ -51,7 +51,6 @@ app.post('/api/login', (req, res) => {
         const token = jwt.sign({ username: username }, process.env.JWT_SECRET, { expiresIn: '1h' });
         res.cookie('token', token, { httpOnly: true });
         res.status(200).json({ token: token });
-        // res.status(200).json({ message: 'Login successful' });
 
     });
 });
@@ -139,6 +138,40 @@ app.post('/api/register', async (req, res) => {
 });
 
 
+// Search Alumni
+app.get('/api/search', (req, res) => {
+    const { name, graduation_year, department } = req.query;
+
+    let query = 'SELECT a.id, a.name, d.department, g.year AS graduation_year, a.dob, a.email, a.mobile, a.specialisation, a.extra_curricular_activities, a.co_curricular_activities  FROM alumni a JOIN department d ON a.department_id = d.id JOIN g_year g ON a.graduation_year_id = g.id WHERE 1=1';
+
+    const params = [];
+
+    if (name) {
+        query += ' AND a.name LIKE ?';
+        params.push(`%${name}%`);
+    }
+
+    if (graduation_year) {
+        query += ' AND g.year LIKE ?';
+        params.push(`%${graduation_year}%`);
+    }
+
+    if (department) {
+        query += ' AND d.department LIKE ?';
+        params.push(`%${department}%`);
+    }
+
+    db.query(query, params, (err, results) => {
+        if (err) {
+            console.error('Error fetching alumni:', err);
+            res.status(500).json({ error: 'Server error' });
+            return;
+        }
+        res.json(results);
+    });
+});
+
+
 // JWT
 
 const jwt = require('jsonwebtoken');
@@ -169,14 +202,9 @@ app.get('/api/protected-route', authenticateToken, (req, res) => {
 
 });
 
-// Add this middleware to your endpoint
 app.get('/api/verify-token', verifyToken, (req, res) => {
-    // If the middleware successfully verifies the token, the user is considered logged in
     res.sendStatus(200);
 });
-
-
-
 
 
 app.listen(port, () => {
